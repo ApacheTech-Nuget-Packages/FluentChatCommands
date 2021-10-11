@@ -1,0 +1,10 @@
+{
+  "type": "Code",
+  "name": "FluentChat Integration Tests",
+  "side": "Universal",
+  "modid": "fluent",
+  "description": "Adds .fluent and /fluent as test chat commands.",
+  "authors": [ "ApacheTech Solutions" ],
+  "version": "1.0.0.0",
+  "dependencies": {}
+}

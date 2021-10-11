@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<IsPackable>false</IsPackable>
+		<AssemblyName>ApacheTech.VintageMods.FluentChatCommands.Tests.Unit</AssemblyName>
+		<RootNamespace>ApacheTech.VintageMods.FluentChatCommands.Tests.Unit</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="FluentAssertions" Version="6.1.0" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
+		<PackageReference Include="Moq" Version="4.16.1" />
+		<PackageReference Include="NUnit" Version="3.13.1" />
+		<PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
+		<PackageReference Include="coverlet.collector" Version="3.0.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\Source\FluentChatCommands\FluentChatCommands.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="VintagestoryAPI">
+			<HintPath>$(VINTAGE_STORY)\VintagestoryAPI.dll</HintPath>
+		</Reference>
+		<Reference Include="VintagestoryLib">
+			<HintPath>D:\Games\Vintage Story\VintagestoryLib.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+</Project>

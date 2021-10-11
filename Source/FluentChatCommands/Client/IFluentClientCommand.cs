@@ -2,6 +2,8 @@
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 
+// ReSharper disable UnusedMember.Global
+
 namespace ApacheTech.VintageMods.FluentChatCommands.Client
 {
     /// <summary>

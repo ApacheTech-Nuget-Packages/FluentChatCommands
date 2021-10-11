@@ -1,5 +1,6 @@
 ﻿using ApacheTech.VintageMods.FluentChatCommands.Exceptions;
-using Vintagestory.API.Common;
+
+// ReSharper disable UnusedMember.Global
 
 namespace ApacheTech.VintageMods.FluentChatCommands.Server
 {

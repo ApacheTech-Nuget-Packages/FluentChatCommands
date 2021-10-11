@@ -18,8 +18,8 @@
 		<Copyright>Copyright © ApacheTech Solutons, 2021. All Rights Reserved.</Copyright>
 		<PackageIcon>__PreviewImage.png</PackageIcon>
 		<PackageIconUrl />
-		<RepositoryUrl>https://github.com/ApacheTechSolutions/ApacheTech.VintageMods.FluentChatCommands</RepositoryUrl>
-		<PackageProjectUrl>https://github.com/ApacheTechSolutions/ApacheTech.VintageMods.FluentChatCommands</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/ApacheTechSolutions/FluentChatCommands</RepositoryUrl>
+		<PackageProjectUrl>https://apachetech.co.uk</PackageProjectUrl>
 		<PackageTags>Vintage Story; C#</PackageTags>
 		<RootNamespace>ApacheTech.VintageMods.FluentChatCommands</RootNamespace>
 		<AssemblyName>ApacheTech.VintageMods.FluentChatCommands</AssemblyName>

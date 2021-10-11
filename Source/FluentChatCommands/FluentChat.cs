@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using ApacheTech.VintageMods.FluentChatCommands.Client;
 using ApacheTech.VintageMods.FluentChatCommands.Server;
 
+// ReSharper disable UnusedType.Global
+
 #if DEBUG
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("ApacheTech.VintageMods.FluentChatCommands.Tests.Unit")]
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("DynamicProxyGenAssembly2")]

@@ -12,7 +12,7 @@
 		<AssemblyVersion>1.0.0.0</AssemblyVersion>
 		<Authors>ApacheTech Solutions</Authors>
 		<Company>ApacheTech Solutions</Company>
-		<Description>Provides a framework for creating client-side and server-side chat command, using a Fluent Builder pattern. Supports lazy loading of chat commands, where they can be registered early, and configured at any stage.</Description>
+		<Description>Provides a framework for creating client-side, and server-side chat commands, using a Fluent Builder pattern. Supports lazy loading of chat commands, where they can be registered early, and configured at any stage.</Description>
 		<PackageLicenseExpression></PackageLicenseExpression>
 		<PackageLicenseFile>LICENCE.md</PackageLicenseFile>
 		<Copyright>Copyright © ApacheTech Solutons, 2021. All Rights Reserved.</Copyright>

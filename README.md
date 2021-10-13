@@ -60,7 +60,7 @@ You can also manually install the package, by editing your `.csproj` file, and a
 
 ## Examples
 
-#### Basic Example
+### Basic Example
 
 In this example, we're setting a command called `.test`, with a basic default command handler.
 ```cs  
@@ -80,7 +80,7 @@ In this example, we're setting a command called `.test`, with a basic default co
     }
 ```
 
-#### Basic Example with Sub-Commands
+### Basic Example with Sub-Commands
 
 In this example, we're setting a command called `.test`, with a basic default command handler, but also setting separate sub-commands for `.test stuff` and `.test things`. The only difference between the sub-commands is that one uses a lambda expression for its handler, and the other separates it's logic into a named method.
 ```cs  
@@ -102,7 +102,7 @@ In this example, we're setting a command called `.test`, with a basic default co
                 .RegisterWith(_capi = capi);
         }
         
-        private void StuffHandler(int groupId, CmdArgs args)
+        private void StuffHandler(string subCommandName, int groupId, CmdArgs args)
         {
             _capi.ShowChatMessage("Doing Stuff!");
         }
@@ -111,39 +111,42 @@ In this example, we're setting a command called `.test`, with a basic default co
     }
 ```
 
-#### Advanced Example with Separation of Concerns
+### Advanced Example with Separation of Concerns
 
-Here, we eager load the command by immediately registering it with the API. 
+Here, we lazy load the `/test` command by immediately registering it with the API. 
 ```cs  
     internal class MyMod : ModSystem
     {
         // ...
         
-        public override void StartClientSide()
+        public override void StartServerSide(ICoreServerAPI sapi)
         {
-            FluentChat.ClientCommand("test").RegisterWith(capi);
+            FluentChat.ServerCommand("test").RegisterWith(sapi);
         }
         
         // ...
     }
 ```
 
-We can then separate our logic into a separate class.
+We can then separate our logic into a separate class; even within a separate assembly.
 ```cs  
     internal class TestChatCommand
     {
-        private ICoreClientAPI _capi;
+        private ICoreServerAPI _sapi;
         
-        internal TestChatCommand(ICoreClientAPI capi)
+        internal TestChatCommand(ICoreServerAPI sapi)
         {
-            _capi = capi;
-            var command = Fluent.ClientCommand("test");
+            _sapi = sapi;
+            var command = Fluent.ServerCommand("test");
             
             // Set Description:
             command.HasDesctiption(Lang.Get("mymod:commands.test.description"));
             
             // Set Default Handler:
             command.HasDefaultHandler(DefaultHandler);
+            
+            // Set Required Privilege:
+            command.RequiresPrivilege(Privilege.ControlServer);
             
             // Set Stuff Handler:
             command.HasSubCommand("stuff").WithHandler(StuffHandler);
@@ -152,19 +155,20 @@ We can then separate our logic into a separate class.
             command.HasSubCommand("things").WithHandler(ThingsHandler);
         }
     
-        private void DefaultHandler(int groupId, CmdArgs args)
+        private void DefaultHandler(string subCommandName, IServerPlayer player, int groupId, CmdArgs args)
         {
-            _capi.ShowChatMessage(Lang.Get("mymod:commands.test.default-message"));
+            // Do stuff and things.
         }
     
-        private void StuffHandler(int groupId, CmdArgs args)
+        private void StuffHandler(string subCommandName, IServerPlayer player, int groupId, CmdArgs args)
+            CmdArgs args)
         {
-            _capi.ShowChatMessage(Lang.Get("mymod:commands.test.stuff-message"));
+            // Do stuff.
         }
         
-        private void ThingsHandler(int groupId, CmdArgs args)
+        private void ThingsHandler(string subCommandName, IServerPlayer player, int groupId, CmdArgs args)
         {
-            _capi.ShowChatMessage(Lang.Get("mymod:commands.test.things-message"));
+            // Do things.
         }
     }
 ```

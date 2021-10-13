@@ -61,7 +61,7 @@ namespace ApacheTech.VintageMods.FluentChatCommands.Tests.Unit.Client
         [Test]
         public void FluentClientSubCommand_ShouldSetHandler_WhenHandlerAdded()
         {
-            FluentChatClientSubCommandHandler expected = (_, _, _) => { };
+            FluentClientSubCommandHandler expected = (_, _, _) => { };
 
             var command = FluentChat.ClientCommand($"{Guid.NewGuid()}")
                 .HasSubCommand("subCommand")
@@ -81,7 +81,7 @@ namespace ApacheTech.VintageMods.FluentChatCommands.Tests.Unit.Client
             var cmdArgs = new CmdArgs(args);
             var subCommandName = cmdArgs.PeekWord();
 
-            FluentChatClientSubCommandHandler handler = TestHandler;
+            FluentClientSubCommandHandler handler = TestHandler;
 
             var command = FluentChat.ClientCommand($"{Guid.NewGuid()}")
                 .HasSubCommand(subCommandName).WithHandler(handler)

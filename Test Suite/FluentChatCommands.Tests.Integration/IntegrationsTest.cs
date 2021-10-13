@@ -21,6 +21,7 @@ namespace FluentChatCommands.Tests.Integration
 
         public override void StartClientSide(ICoreClientAPI capi)
         {
+
             capi.RegisterCommand("apache", "", "", (_, _) => { capi.ShowChatMessage("Sanity Check"); });
 
             FluentChat.ClientCommand("fluent")

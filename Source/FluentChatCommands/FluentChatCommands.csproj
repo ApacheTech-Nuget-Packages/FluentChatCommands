@@ -12,7 +12,7 @@
 		<AssemblyVersion>1.0.0.0</AssemblyVersion>
 		<Authors>ApacheTech Solutions</Authors>
 		<Company>ApacheTech Solutions</Company>
-		<Description>Provides a framework for creating client-side, and server-side chat commands, using a Fluent Builder pattern. Supports lazy loading of chat commands, where they can be registered early, and configured at any stage.</Description>
+		<Description>Provides a framework for creating client-side, and server-side chat commands, using a Fluent Builder pattern.</Description>
 		<PackageLicenseExpression></PackageLicenseExpression>
 		<PackageLicenseFile>LICENCE.md</PackageLicenseFile>
 		<Copyright>Copyright © ApacheTech Solutons, 2021. All Rights Reserved.</Copyright>
@@ -23,6 +23,8 @@
 		<PackageTags>Vintage Story; C#</PackageTags>
 		<RootNamespace>ApacheTech.VintageMods.FluentChatCommands</RootNamespace>
 		<AssemblyName>ApacheTech.VintageMods.FluentChatCommands</AssemblyName>
+		<RepositoryType>git</RepositoryType>
+		<PackageReleaseNotes>Initial Release</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>

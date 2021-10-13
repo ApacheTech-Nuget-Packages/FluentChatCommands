@@ -1,4 +1,5 @@
 ﻿using ApacheTech.VintageMods.FluentChatCommands.Exceptions;
+using Vintagestory.API.Common;
 
 // ReSharper disable UnusedMember.Global
 
@@ -16,6 +17,6 @@ namespace ApacheTech.VintageMods.FluentChatCommands.Client
         /// </summary>
         /// <param name="handler">A client-side command handler.</param>
         /// <returns>Returns the parent command.</returns>
-        IFluentClientCommand WithHandler(FluentChatClientSubCommandHandler handler);
+        IFluentClientCommand WithHandler(FluentClientSubCommandHandler handler);
     }
 }

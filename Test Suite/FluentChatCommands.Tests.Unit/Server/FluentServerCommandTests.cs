@@ -196,7 +196,7 @@ namespace ApacheTech.VintageMods.FluentChatCommands.Tests.Unit.Server
             ServerChatCommandDelegate handler = (_, _, _) => { };
             var args = new CmdArgs("subCommand Test");
 
-            var mock = new Mock<FluentChatServerSubCommandHandler>();
+            var mock = new Mock<FluentServerSubCommandHandler>();
             mock.Setup(p => p(It.IsAny<string>(), _mockPlayer.Object, 1, args)).Verifiable();
 
             var command = FluentChat.ServerCommand($"{Guid.NewGuid()}");

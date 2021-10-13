@@ -16,6 +16,6 @@ namespace ApacheTech.VintageMods.FluentChatCommands.Server
         /// </summary>
         /// <param name="handler">A server-side command handler.</param>
         /// <returns>Returns the parent command.</returns>
-        IFluentServerCommand WithHandler(FluentChatServerSubCommandHandler handler);
+        IFluentServerCommand WithHandler(FluentServerSubCommandHandler handler);
     }
 }

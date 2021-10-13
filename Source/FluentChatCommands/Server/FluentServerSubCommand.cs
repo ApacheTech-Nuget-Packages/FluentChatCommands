@@ -2,7 +2,7 @@
 
 namespace ApacheTech.VintageMods.FluentChatCommands.Server
 {
-    internal class FluentServerSubCommand : IFluentServerSubCommand
+    internal sealed class FluentServerSubCommand : IFluentServerSubCommand
     {
         private readonly IFluentServerCommand _parent;
 
@@ -11,7 +11,7 @@ namespace ApacheTech.VintageMods.FluentChatCommands.Server
             _parent = parentServerCommand;
         }
 
-        internal FluentChatServerSubCommandHandler Handler { get; private set; }
+        internal FluentServerSubCommandHandler Handler { get; private set; }
 
         /// <summary>
         ///     Specifies the command handler to use, when the user calls the sub-command.
@@ -20,7 +20,7 @@ namespace ApacheTech.VintageMods.FluentChatCommands.Server
         /// </summary>
         /// <param name="handler">A server-side command handler.</param>
         /// <returns>Returns the parent command.</returns>
-        public IFluentServerCommand WithHandler(FluentChatServerSubCommandHandler handler)
+        public IFluentServerCommand WithHandler(FluentServerSubCommandHandler handler)
         {
             Handler = handler;
             return _parent;

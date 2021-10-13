@@ -6,7 +6,7 @@ using Vintagestory.API.Common;
 
 namespace ApacheTech.VintageMods.FluentChatCommands.Client
 {
-    internal class FluentClientCommand : IFluentClientCommand
+    internal sealed class FluentClientCommand : IFluentClientCommand
     {
         private ICoreClientAPI _capi;
 
@@ -87,6 +87,7 @@ namespace ApacheTech.VintageMods.FluentChatCommands.Client
             ChatCommand.Syntax = GetSyntax();
             return subCommand;
         }
+
         private string GetSyntax()
         {
             return

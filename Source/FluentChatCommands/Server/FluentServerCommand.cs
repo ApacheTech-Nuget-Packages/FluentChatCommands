@@ -12,7 +12,7 @@ using Vintagestory.API.Util;
 
 namespace ApacheTech.VintageMods.FluentChatCommands.Server
 {
-    internal class FluentServerCommand : IFluentServerCommand
+    internal sealed class FluentServerCommand : IFluentServerCommand
     {
         private ICoreServerAPI _sapi;
 

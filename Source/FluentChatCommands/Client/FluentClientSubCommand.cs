@@ -2,7 +2,7 @@
 
 namespace ApacheTech.VintageMods.FluentChatCommands.Client
 {
-    internal class FluentClientSubCommand : IFluentClientSubCommand
+    internal sealed class FluentClientSubCommand : IFluentClientSubCommand
     {
         private readonly IFluentClientCommand _parent;
 
@@ -11,7 +11,7 @@ namespace ApacheTech.VintageMods.FluentChatCommands.Client
             _parent = parentClientCommand;
         }
 
-        internal FluentChatClientSubCommandHandler Handler { get; private set; }
+        internal FluentClientSubCommandHandler Handler { get; private set; }
 
         /// <summary>
         ///     Specifies the command handler to use, when the user calls the sub-command.
@@ -20,7 +20,7 @@ namespace ApacheTech.VintageMods.FluentChatCommands.Client
         /// </summary>
         /// <param name="handler">A client-side command handler.</param>
         /// <returns>Returns the parent command.</returns>
-        public IFluentClientCommand WithHandler(FluentChatClientSubCommandHandler handler)
+        public IFluentClientCommand WithHandler(FluentClientSubCommandHandler handler)
         {
             Handler = handler;
             return _parent;

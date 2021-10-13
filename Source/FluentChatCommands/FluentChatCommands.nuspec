@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package >
-  <metadata>
-    <id>$id$</id>
-    <version>$version$</version>
-    <title>$title$</title>
-    <authors>$author$</authors>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <license type="expression">Copyright © ApacheTech Solutions, 2021. All Rights Reserved.</license>
-    <projectUrl>https://apachetech.co.uk</projectUrl>
-    <description>$description$</description>
-    <releaseNotes></releaseNotes>
-    <copyright>$copyright$</copyright>
-  </metadata>
+	<metadata>
+		<id>$id$</id>
+		<version>$version$</version>
+		<title>$title$</title>
+		<authors>$author$</authors>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<license type="expression">Copyright © ApacheTech Solutions, 2021. All Rights Reserved.</license>
+		<projectUrl>https://apachetech.co.uk</projectUrl>
+		<description>$description$</description>
+		<releaseNotes>$releaseNotes$</releaseNotes>
+		<copyright>$copyright$</copyright>
+	</metadata>
 </package>

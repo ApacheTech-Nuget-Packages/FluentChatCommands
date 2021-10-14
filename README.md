@@ -161,7 +161,6 @@ We can then separate our logic into a separate class; even within a separate ass
         }
     
         private void StuffHandler(string subCommandName, IServerPlayer player, int groupId, CmdArgs args)
-            CmdArgs args)
         {
             // Do stuff.
         }

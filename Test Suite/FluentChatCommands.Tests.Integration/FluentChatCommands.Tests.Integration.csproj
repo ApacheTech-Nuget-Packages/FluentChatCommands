@@ -18,6 +18,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="ApacheTech.VintageMods.FluentChatCommands" Version="1.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<Reference Include="VintagestoryAPI">
 			<HintPath>D:\Games\Vintage Story\VintagestoryAPI.dll</HintPath>
 			<Private>false</Private>

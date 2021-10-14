@@ -10,7 +10,7 @@ The syntax string for the command is set automatically, by the sub-commands that
 
 This package assumes that you have [Vintage Story](https://vintagestory.at/) installed on the computer, and that you have set the following environment variables, as per the Vintage Story Modding Best Practices.
 
- * **%VINTAGE_STORY%**: The installation directory for Vintage Story. The location of *Vintagestory.exe*.
+ * **%VINTAGE_STORY%**: The installation directory for Vintage Story. The location of *Vintagestory.exe*. By default this is *%APPDATA%\Vintagestory*.
  
  * **%VINTAGE_STORY_DATA%**: The data directory for Vintage Story. By default this is *%APPDATA%\VintagestoryData*. However, you can check by opening the game, going to the Mod Manager, selecting *Open Mods Folder*, and going to the parent folder.
 
@@ -137,7 +137,7 @@ We can then separate our logic into a separate class; even within a separate ass
         internal TestChatCommand(ICoreServerAPI sapi)
         {
             _sapi = sapi;
-            var command = Fluent.ServerCommand("test");
+            var command = FluentChat.ServerCommand("test");
             
             // Set Description:
             command.HasDesctiption(Lang.Get("mymod:commands.test.description"));

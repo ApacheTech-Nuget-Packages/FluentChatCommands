@@ -143,12 +143,11 @@ namespace ApacheTech.VintageMods.FluentChatCommands.Server
                     DefaultHandler(player, groupId, args);
                     return;
             }
-
-            if (args.Length > 0)
+        
+            var firstArg = args.PopWord();
+            if (!string.IsNullOrWhiteSpace(firstArg) && SubCommands.ContainsKey(firstArg))
             {
-                var firstArg = args.PopWord();
-                if (!string.IsNullOrWhiteSpace(firstArg) && SubCommands.ContainsKey(firstArg))
-                    SubCommands[firstArg].Handler(firstArg, player, groupId, args);
+                SubCommands[firstArg].Handler(firstArg, player, groupId, args);
             }
             else
             {

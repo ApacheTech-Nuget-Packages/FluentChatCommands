@@ -289,6 +289,26 @@ namespace ApacheTech.VintageMods.FluentChatCommands.Tests.Unit.Server
 
             concreteCommand.ChatCommand.GetHelpMessage().Should().Match(helpMessage);
         }
+
+        [TestCase("invalidSubCommand")]
+        [TestCase("invalidSubCommand withArguments")]
+        public void FluentClientCommand_ShouldOutputSyntaxMessage_WhenInvalidSubCommandPassed(string arguments)
+        {
+            var args = new CmdArgs(arguments);
+            var command = FluentChat.ServerCommand($"{Guid.NewGuid()}");
+            var concreteCommand = (FluentServerCommand)command;
+
+            command
+                .HasDefaultHandler((_, _, _) => { })
+                .HasSubCommand("subCommand").WithHandler((_, _, _, _) => { })
+                .RegisterWith(_mockApi.Object);
+
+            concreteCommand.ChatCommand.CallHandler(_mockPlayer.Object, 1, args);
+
+            _mockApi.Verify(p =>
+                    p.SendMessage(_mockPlayer.Object, 1, concreteCommand.ChatCommand.GetHelpMessage(), EnumChatType.Notification, null),
+                Times.Once);
+        }
     }
 }
 #endif

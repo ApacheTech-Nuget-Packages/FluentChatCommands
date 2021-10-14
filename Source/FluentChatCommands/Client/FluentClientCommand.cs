@@ -104,13 +104,15 @@ namespace ApacheTech.VintageMods.FluentChatCommands.Client
         {
             foreach (var subCommand in SubCommands.Values.Where(subCommand => subCommand.Handler is null))
             {
-                throw new OrphanedSubCommandException(ChatCommand, $"The sub-command `{subCommand}`, for the `.{ChatCommand.Command}` command has no handler set.");
+                throw new OrphanedSubCommandException(ChatCommand,
+                    $"The sub-command `{subCommand}`, for the `.{ChatCommand.Command}` command has no handler set.");
             }
 
             switch (DefaultHandler)
             {
                 case null when !SubCommands.Values.Any(p => p is not null):
-                    throw new NoHandlersFoundException(ChatCommand, $"The command `.{ChatCommand.Command}` has no handlers set.");
+                    throw new NoHandlersFoundException(ChatCommand,
+                        $"The command `.{ChatCommand.Command}` has no handlers set.");
                 case null when args.Length is 0:
                     _capi.ShowChatMessage(ChatCommand.GetHelpMessage());
                     return;
@@ -119,11 +121,10 @@ namespace ApacheTech.VintageMods.FluentChatCommands.Client
                     return;
             }
 
-            if (args.Length > 0)
+            var firstArg = args.PopWord();
+            if (!string.IsNullOrWhiteSpace(firstArg) && SubCommands.ContainsKey(firstArg))
             {
-                var firstArg = args.PopWord();
-                if (!string.IsNullOrWhiteSpace(firstArg) && SubCommands.ContainsKey(firstArg))
-                    SubCommands[firstArg].Handler(firstArg, groupId, args);
+                SubCommands[firstArg].Handler(firstArg, groupId, args);
             }
             else
             {

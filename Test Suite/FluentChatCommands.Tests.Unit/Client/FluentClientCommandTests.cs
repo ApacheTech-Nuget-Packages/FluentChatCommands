@@ -257,6 +257,25 @@ namespace ApacheTech.VintageMods.FluentChatCommands.Tests.Unit.Client
 
             concreteCommand.ChatCommand.GetHelpMessage().Should().Match(helpMessage);
         }
+        
+        [TestCase("invalidSubCommand")]
+        [TestCase("invalidSubCommand withArguments")]
+        public void FluentClientCommand_ShouldOutputSyntaxMessage_WhenInvalidSubCommandPassed(string arguments)
+        {
+            var args = new CmdArgs(arguments);
+            var command = FluentChat.ClientCommand($"{Guid.NewGuid()}");
+            var concreteCommand = (FluentClientCommand)command;
+
+            command
+                .HasDefaultHandler((_, _) => { })
+                .HasSubCommand("subCommand").WithHandler((_, _, _) => { })
+                .RegisterWith(_mockApi.Object);
+
+            concreteCommand.ChatCommand.CallHandler(null, 1, args);
+
+            _mockApi.Verify(p =>
+                p.ShowChatMessage(concreteCommand.ChatCommand.GetHelpMessage()), Times.Once);
+        }
     }
 }
 #endif

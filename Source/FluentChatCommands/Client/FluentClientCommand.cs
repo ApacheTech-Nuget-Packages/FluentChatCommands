@@ -131,5 +131,13 @@ namespace ApacheTech.VintageMods.FluentChatCommands.Client
                 _capi.ShowChatMessage(ChatCommand.GetHelpMessage());
             }
         }
+
+        /// <summary>
+        ///     Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
+        {
+            SubCommands.Clear();
+        }
     }
 }

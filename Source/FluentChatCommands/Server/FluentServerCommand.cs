@@ -154,5 +154,13 @@ namespace ApacheTech.VintageMods.FluentChatCommands.Server
                 _sapi.SendMessage(player, groupId, ChatCommand.GetHelpMessage(), EnumChatType.Notification);
             }
         }
+
+        /// <summary>
+        ///     Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
+        {
+            SubCommands.Clear();
+        }
     }
 }

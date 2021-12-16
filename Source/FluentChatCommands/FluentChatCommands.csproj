@@ -3,8 +3,8 @@
 	<PropertyGroup>
 		<ApplicationIcon>__Icon.ico</ApplicationIcon>
 		<AssemblyName>ApacheTech.VintageMods.FluentChatCommands</AssemblyName>
-		<AssemblyVersion>1.2.0.0</AssemblyVersion>
-		<AssemblyFileVersion>1.2.0.0</AssemblyFileVersion>
+		<AssemblyVersion>1.3.0.0</AssemblyVersion>
+		<AssemblyFileVersion>1.3.0.0</AssemblyFileVersion>
 		<Authors>ApacheTech Solutions</Authors>
 		
 		<Company>ApacheTech Solutions</Company>
@@ -38,7 +38,7 @@
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<Title>Fluent Chat Commands</Title>
 		
-		<Version>1.2.0.0</Version>
+		<Version>1.3.0.0</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -64,7 +64,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
 	    <PrivateAssets>all</PrivateAssets>
 	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>

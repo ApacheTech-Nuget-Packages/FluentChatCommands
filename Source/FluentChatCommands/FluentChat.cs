@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using ApacheTech.VintageMods.FluentChatCommands.Client;
 using ApacheTech.VintageMods.FluentChatCommands.Server;
-using Vintagestory.API.Client;
 
+// ReSharper disable UnusedMember.Global
 // ReSharper disable UnusedType.Global
 
 #if DEBUG
@@ -19,13 +19,9 @@ namespace ApacheTech.VintageMods.FluentChatCommands
     /// </summary>
     public static class FluentChat
     {
-        private static readonly Dictionary<string, FluentClientCommand> CachedClientCommands = new();
+        internal static readonly Dictionary<string, FluentClientCommand> CachedClientCommands = new();
 
-        private static readonly Dictionary<string, FluentServerCommand> CachedServerCommands = new();
-
-        internal static bool ClientCommandWatcherFlag { get; set; }
-
-        internal static bool ServerCommandWatcherFlag { get; set; }
+        internal static readonly Dictionary<string, FluentServerCommand> CachedServerCommands = new();
 
         /// <summary>
         ///     Returns an instance of <see cref="IFluentClientCommand" />, that can be used to build a client-side command.
@@ -46,23 +42,6 @@ namespace ApacheTech.VintageMods.FluentChatCommands
             CachedClientCommands.Add(commandName, command);
             return command;
         }
-        
-        /// <summary>
-        ///     Returns an instance of <see cref="IFluentClientCommand" />, that can be used to build a client-side command.
-        /// </summary>
-        /// <param name="commandNames">
-        ///     The command to be entered by the user. Do not add the leading ".", this will be added
-        ///     automatically.
-        /// </param>
-        public static IFluentClientCommand ClientCommand(params string[] commandNames)
-        {
-            if (commandNames.Length == 0) throw new ArgumentException();
-            foreach (var commandName in commandNames)
-            {
-                ClientCommand(commandName);
-            }
-            return CachedClientCommands[commandNames[0]];
-        }
 
         /// <summary>
         ///     Returns an instance of <see cref="IFluentServerCommand" />, that can be used to build a server-side command.
@@ -82,23 +61,6 @@ namespace ApacheTech.VintageMods.FluentChatCommands
             var command = new FluentServerCommand(commandName);
             CachedServerCommands.Add(commandName, command);
             return command;
-        }
-
-        /// <summary>
-        ///     Returns an instance of <see cref="IFluentServerCommand" />, that can be used to build a server-side command.
-        /// </summary>
-        /// <param name="commandNames">
-        ///     The command to be entered by the user. Do not add the leading ".", this will be added
-        ///     automatically.
-        /// </param>
-        public static IFluentServerCommand ServerCommand(params string[] commandNames)
-        {
-            if (commandNames.Length == 0) throw new ArgumentException();
-            foreach (var commandName in commandNames)
-            {
-                ServerCommand(commandName);
-            }
-            return CachedServerCommands[commandNames[0]];
         }
 
         /// <summary>

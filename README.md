@@ -41,20 +41,20 @@ You can install this package through the Package Manager within Visual Studio, b
 You can install this package through the Package Manager Console, by using the command:
 
 ```cmd
-Install-Package ApacheTech.VintageMods.FluentChatCommands -Version 1.2.0
+Install-Package ApacheTech.VintageMods.FluentChatCommands -Version 1.3.0
 ```
 
 If using the `nuget.exe` CLI application, you can use the following command:
 
 ```cmd
-nuget install ApacheTech.VintageMods.FluentChatCommands -Version 1.2.0 
+nuget install ApacheTech.VintageMods.FluentChatCommands -Version 1.3.0 
 ```
 
 You can also manually install the package, by editing your `.csproj` file, and adding the following section:
 
 ```xml
 	<ItemGroup>
-	  <PackageReference Include="ApacheTech.VintageMods.FluentChatCommands" Version="1.2.0" />
+	  <PackageReference Include="ApacheTech.VintageMods.FluentChatCommands" Version="1.3.0" />
 	</ItemGroup>
 ```
 

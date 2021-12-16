@@ -4,22 +4,17 @@ using ApacheTech.VintageMods.FluentChatCommands.Exceptions;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 
+// ReSharper disable MemberCanBePrivate.Global
+
 namespace ApacheTech.VintageMods.FluentChatCommands.Client
 {
     internal sealed class FluentClientCommand : IFluentClientCommand
     {
         private ICoreClientAPI _capi;
 
-#if DEBUG
         internal ClientChatCommand ChatCommand { get; }
         internal Dictionary<string, FluentClientSubCommand> SubCommands { get; } = new();
-        internal ClientChatCommandDelegate DefaultHandler { get; private set; }
-
-#else
-        private ClientChatCommand ChatCommand { get; }
-        private Dictionary<string, FluentClientSubCommand> SubCommands { get; } = new();
-        private ClientChatCommandDelegate DefaultHandler { get; set; }
-#endif
+        internal ClientChatCommandDelegate DefaultHandler { get; set; }
 
         internal FluentClientCommand(string commandName)
         {
@@ -86,6 +81,20 @@ namespace ApacheTech.VintageMods.FluentChatCommands.Client
             SubCommands.Add(subCommandName, subCommand);
             ChatCommand.Syntax = GetSyntax();
             return subCommand;
+        }
+
+        /// <summary>
+        ///     Specifies an alias for the command, a secondary name for the same command.
+        /// </summary>
+        /// <param name="commandName">Name of the alias command.</param>
+        /// <returns>Returns the same instance of the command, for further composition, if needed.</returns>
+        public IFluentClientCommand HasAlias(string commandName)
+        {
+            if (!FluentChat.CachedClientCommands.ContainsKey(commandName))
+            {
+                FluentChat.CachedClientCommands.Add(commandName, this);
+            }
+            return this;
         }
 
         private string GetSyntax()

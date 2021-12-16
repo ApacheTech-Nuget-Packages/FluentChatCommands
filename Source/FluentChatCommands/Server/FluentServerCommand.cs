@@ -5,6 +5,8 @@ using Vintagestory.API.Common;
 using Vintagestory.API.Server;
 using Vintagestory.API.Util;
 
+// ReSharper disable MemberCanBePrivate.Global
+
 #if DEBUG
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("ApacheTech.VintageMods.FluentChatCommands.Tests")]
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("DynamicProxyGenAssembly2")]
@@ -16,16 +18,9 @@ namespace ApacheTech.VintageMods.FluentChatCommands.Server
     {
         private ICoreServerAPI _sapi;
 
-#if DEBUG
         internal ServerChatCommand ChatCommand { get; }
         internal Dictionary<string, FluentServerSubCommand> SubCommands { get; } = new();
-        internal ServerChatCommandDelegate DefaultHandler { get; private set; }
-
-#else
-        private ServerChatCommand ChatCommand { get; }
-        private Dictionary<string, FluentServerSubCommand> SubCommands { get; } = new();
-        private ServerChatCommandDelegate DefaultHandler { get; set; }
-#endif
+        internal ServerChatCommandDelegate DefaultHandler { get; set; }
 
         internal FluentServerCommand(string commandName)
         {
@@ -89,6 +84,20 @@ namespace ApacheTech.VintageMods.FluentChatCommands.Server
         {
             ChatCommand.Syntax = GetSyntax();
             (_sapi = sapi).RegisterCommand(ChatCommand);
+            return this;
+        }
+
+        /// <summary>
+        ///     Specifies an alias for the command, a secondary name for the same command.
+        /// </summary>
+        /// <param name="commandName">Name of the alias command.</param>
+        /// <returns>Returns the same instance of the command, for further composition, if needed.</returns>
+        public IFluentServerCommand HasAlias(string commandName)
+        {
+            if (!FluentChat.CachedServerCommands.ContainsKey(commandName))
+            {
+                FluentChat.CachedServerCommands.Add(commandName, this);
+            }
             return this;
         }
 

@@ -6,6 +6,10 @@ namespace ApacheTech.VintageMods.FluentChatCommands.Client
     {
         private readonly IFluentClientCommand _parent;
 
+        /// <summary>
+        /// 	Initialises a new instance of the <see cref="FluentClientSubCommand"/> class.
+        /// </summary>
+        /// <param name="parentClientCommand">The parent client command.</param>
         internal FluentClientSubCommand(IFluentClientCommand parentClientCommand)
         {
             _parent = parentClientCommand;

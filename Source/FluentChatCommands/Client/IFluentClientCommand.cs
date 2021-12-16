@@ -15,7 +15,7 @@ namespace ApacheTech.VintageMods.FluentChatCommands.Client
         ///     Specifies the description for the command.
         /// </summary>
         /// <param name="description">The description.</param>
-        /// <returns>Returns the same instance of the command, for further composition, if needed..</returns>
+        /// <returns>Returns the same instance of the command, for further composition, if needed.</returns>
         IFluentClientCommand HasDescription(string description);
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace ApacheTech.VintageMods.FluentChatCommands.Client
         ///     the command's help message to the user.
         /// </summary>
         /// <param name="handler">The handler.</param>
-        /// <returns>Returns the same instance of the command, for further composition, if needed..</returns>
+        /// <returns>Returns the same instance of the command, for further composition, if needed.</returns>
         IFluentClientCommand HasDefaultHandler(ClientChatCommandDelegate handler);
 
         /// <summary>
@@ -42,5 +42,12 @@ namespace ApacheTech.VintageMods.FluentChatCommands.Client
         /// <param name="subCommandName">Name of the sub command.</param>
         /// <returns>Returns the sub-command, so that a handler can be set.</returns>
         IFluentClientSubCommand HasSubCommand(string subCommandName);
+
+        /// <summary>
+        ///     Specifies an alias for the command, a secondary name for the same command.
+        /// </summary>
+        /// <param name="commandName">Name of the alias command.</param>
+        /// <returns>Returns the same instance of the command, for further composition, if needed.</returns>
+        IFluentClientCommand HasAlias(string commandName);
     }
 }

@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<LangVersion>11</LangVersion>
+		<IsPackable>false</IsPackable>
+		<Nullable>disable</Nullable>
+		<AssemblyName>ApacheTech.VintageMods.FluentChatCommands.Tests.Unit</AssemblyName>
+		<RootNamespace>ApacheTech.VintageMods.FluentChatCommands.Tests.Unit</RootNamespace>
+		<Configurations>Debug;Release;Unit Test</Configurations>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="FluentAssertions" Version="6.1.0" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
+		<PackageReference Include="Moq" Version="4.16.1" />
+		<PackageReference Include="NUnit" Version="3.13.1" />
+		<PackageReference Include="coverlet.collector" Version="3.0.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\src\FluentChatCommands\FluentChatCommands.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="VintagestoryAPI">
+			<HintPath>$(VINTAGE_STORY)\VintagestoryAPI.dll</HintPath>
+		</Reference>
+		<Reference Include="VintagestoryLib">
+			<HintPath>$(VINTAGE_STORY)\VintagestoryLib.dll</HintPath>
+		</Reference>
+		<Reference Include="0Harmony">
+			<HintPath>$(VINTAGE_STORY)\Lib\0Harmony.dll</HintPath>
+		</Reference>
+		<Reference Include="OpenTK">
+			<HintPath>$(VINTAGE_STORY)\Lib\OpenTK.dll</HintPath>
+		</Reference>
+		<Reference Include="cairo-sharp">
+			<HintPath>$(VINTAGE_STORY)\Lib\cairo-sharp.dll</HintPath>
+		</Reference>
+		<Reference Include="XPlatformInterface">
+			<HintPath>$(VINTAGE_STORY)\Lib\xplatforminterface.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+</Project>

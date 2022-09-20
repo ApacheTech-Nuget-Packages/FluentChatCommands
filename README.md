@@ -32,48 +32,23 @@ You can also do this through the Windows Control Panel, following these steps:
 
 Further details and troubleshooting can be found [here](https://www.computerhope.com/issues/ch000549.htm).
 
-## Installation
+## Code Examples
 
-You can install this package through the Package Manager within Visual Studio, by searching for `ApacheTech.VintageMods`.
-
-![Installation Through The Package Manager](.github/Resources/InstallationThroughPackageManager.png)
-
-You can install this package through the Package Manager Console, by using the command:
-
-```cmd
-Install-Package ApacheTech.VintageMods.FluentChatCommands -Version 1.3.0
-```
-
-If using the `nuget.exe` CLI application, you can use the following command:
-
-```cmd
-nuget install ApacheTech.VintageMods.FluentChatCommands -Version 1.3.0 
-```
-
-You can also manually install the package, by editing your `.csproj` file, and adding the following section:
-
-```xml
-	<ItemGroup>
-	  <PackageReference Include="ApacheTech.VintageMods.FluentChatCommands" Version="1.3.0" />
-	</ItemGroup>
-```
-
-## Examples
+There are lots of ways you can use FluentChat, to your own liking. Here is just a small selection of ideas to help you get started.
 
 ### Basic Example
 
 In this example, we're setting a command called `.test`, with a basic default command handler.
-```cs  
+```csharp  
     internal class MyMod : ModSystem
     {
         // ...
         
         public override void StartClientSide(ICoreClientAPI capi)
         {
-            FluentChat.ClientCommand("test")
-                .HasDescription("This is a test command.")
-                .HasDefaultHandler((_,_) => capi.ShowChatMessage("Hello, World!"))
-                .RegisterWith(capi);
+            FluentChat.RegisterCommand("test", capi)
+                .WithDescription("This is a test command.")
+                .WithHandler((_,_,_) => capi.ShowChatMessage("Hello, World!"));
         }
         
         // ...
@@ -83,7 +58,7 @@ In this example, we're setting a command called `.test`, with a basic default co
 ### Basic Example with Sub-Commands
 
 In this example, we're setting a command called `.test`, with a basic default command handler, but also setting separate sub-commands for `.test stuff` and `.test things`. The only difference between the sub-commands is that one uses a lambda expression for its handler, and the other separates it's logic into a named method.
-```cs  
+```csharp  
     internal class MyMod : ModSystem
     {
         // ...
@@ -92,14 +67,12 @@ In this example, we're setting a command called `.test`, with a basic default co
         
         public override void StartClientSide(ICoreClientAPI capi)
         {
-            FluentChat.ClientCommand("test")
-                .HasDescription("This is a test command")
-                .HasDefaultHandler((_,_) => capi.ShowChatMessage("Hello, World!"))
-                .HasSubCommand("stuff")
-                .WithHandler(StuffHandler)
-                .HasSubCommand("things")
-                    .WithHandler((_,_) => capi.ShowChatMessage("Doing Things!"))
-                .RegisterWith(_capi = capi);
+            capi.RegisterFluentCommand("test")
+                .WithDescription("This is a test command.")
+                .WithHandler((_,_,_) => capi.ShowChatMessage("Hello, World!"))
+                .HasSubCommand("stuff" x => x.WithHandler(StuffHandler).Build())                
+                .HasSubCommand("things", x =>x.WithHandler(
+                    (_,_,_) => capi.ShowChatMessage("Doing Things!")).Build());
         }
         
         private void StuffHandler(string subCommandName, int groupId, CmdArgs args)
@@ -114,14 +87,14 @@ In this example, we're setting a command called `.test`, with a basic default co
 ### Advanced Example with Separation of Concerns
 
 Here, we lazy load the `/test` command by immediately registering it with the API. 
-```cs  
+```csharp
     internal class MyMod : ModSystem
     {
         // ...
         
         public override void StartServerSide(ICoreServerAPI sapi)
         {
-            FluentChat.ServerCommand("test").RegisterWith(sapi);
+            sapi.RegisterFluentCommand("test")
         }
         
         // ...
@@ -129,7 +102,7 @@ Here, we lazy load the `/test` command by immediately registering it with the AP
 ```
 
 We can then separate our logic into a separate class; even within a separate assembly.
-```cs  
+```csharp  
     internal class TestChatCommand
     {
         private ICoreServerAPI _sapi;
@@ -137,22 +110,22 @@ We can then separate our logic into a separate class; even within a separate ass
         internal TestChatCommand(ICoreServerAPI sapi)
         {
             _sapi = sapi;
-            var command = FluentChat.ServerCommand("test");
+            var command = sapi.FluentCommand("test");
             
             // Set Description:
-            command.HasDesctiption(Lang.Get("mymod:commands.test.description"));
+            command.WithDesctiption(Lang.Get("mymod:commands.test.description"));
             
             // Set Default Handler:
-            command.HasDefaultHandler(DefaultHandler);
+            command.WithHandler(DefaultHandler);
             
             // Set Required Privilege:
             command.RequiresPrivilege(Privilege.ControlServer);
             
             // Set Stuff Handler:
-            command.HasSubCommand("stuff").WithHandler(StuffHandler);
+            command.HasSubCommand("stuff", x => x.WithHandler(StuffHandler).Build());
             
             // Set Things Handler:
-            command.HasSubCommand("things").WithHandler(ThingsHandler);
+            command.HasSubCommand("things", x => x.WithHandler(ThingsHandler).Build());
         }
     
         private void DefaultHandler(string subCommandName, IServerPlayer player, int groupId, CmdArgs args)

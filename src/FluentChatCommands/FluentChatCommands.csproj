@@ -1,0 +1,108 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<Version>2.0.0.0</Version>
+		<PackageReleaseNotes>
+			Update to 2.0.0
+
+			Fully overhauled for game version 1.17.
+
+			- Fixed: Finally fixed the bug where the default handler couldn't be called with arguments.
+
+			- Overhaul: FluentChat is now side-agnostic. Commands are now eager registered with the API, and remain open for extension.
+			- Overhaul: Sub-commands are now registered via a fluent builder factory method.
+			- Overhaul: Sub-commands can now have nested sub-commands.
+			- Overhaul: Sub-commands can now have aliases, that are added as proxies of the same sub-command handler.
+
+			- Added: Extension methods to aid the registration and retrieval of FluentChat commands, from the api.
+			- Added: Extension methods to aid communication with players.
+			- Added: Extension methods to aid selective routing between client and server APIs.
+			- Added: Extension methods to aid working with Chat Commands, with the API.
+		</PackageReleaseNotes>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<ApplicationIcon>__Icon.ico</ApplicationIcon>
+		<AssemblyName>ApacheTech.VintageMods.FluentChatCommands</AssemblyName>
+		<AssemblyVersion>$(Version)</AssemblyVersion>
+		<AssemblyFileVersion>$(Version)</AssemblyFileVersion>
+		<Authors>ApacheTech Solutions</Authors>
+
+		<Company>ApacheTech Solutions</Company>
+		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+		<Copyright>Copyright © ApacheTech Solutons, 2021. All Rights Reserved.</Copyright>
+
+		<DebugSymbols>true</DebugSymbols>
+		<DebugType>embedded</DebugType>
+		<Deterministic>true</Deterministic>
+		<Description>Provides a framework for creating client-side, and server-side chat commands, using a Fluent Builder pattern.</Description>
+
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
+
+		<LangVersion>11</LangVersion>
+		<Nullable>enable</Nullable>
+
+		<PackageIcon>__PreviewImage.png</PackageIcon>
+		<PackageLicenseFile>LICENCE.md</PackageLicenseFile>
+		<PackageProjectUrl>https://apachetech.co.uk</PackageProjectUrl>
+		<PackageTags>VintageStory;C#</PackageTags>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/ApacheTechSolutions/FluentChatCommands</RepositoryUrl>
+		<RootNamespace>ApacheTech.VintageMods.FluentChatCommands</RootNamespace>
+
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<Title>Fluent Chat Commands</Title>
+
+
+		<Configurations>Debug;Release;Unit Test</Configurations>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Reference Include="VintagestoryAPI">
+			<HintPath>$(VINTAGE_STORY)\VintagestoryAPI.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="VintagestoryLib">
+		  <HintPath>$(VINTAGE_STORY)\VintagestoryLib.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="0Harmony">
+			<HintPath>$(VINTAGE_STORY)\Lib\0Harmony.dll</HintPath>
+			<Private>false</Private>
+		</Reference>
+	</ItemGroup>
+
+	<PropertyGroup>
+
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\..\README.md" Link="README.md">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+		<None Include="LICENCE.md">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+		<None Include="__PreviewImage.png">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ApacheTech.Common.Extensions.Harmony" Version="1.2.0" />
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
+	    <PrivateAssets>all</PrivateAssets>
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
+	</ItemGroup>
+
+</Project>

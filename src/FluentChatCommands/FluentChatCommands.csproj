@@ -1,23 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<Version>2.0.0.0</Version>
+		<Version>2.0.1.0</Version>
 		<PackageReleaseNotes>
-			Update to 2.0.0
+			Update to 2.0.1
 
-			Fully overhauled for game version 1.17.
-
-			- Fixed: Finally fixed the bug where the default handler couldn't be called with arguments.
-
-			- Overhaul: FluentChat is now side-agnostic. Commands are now eager registered with the API, and remain open for extension.
-			- Overhaul: Sub-commands are now registered via a fluent builder factory method.
-			- Overhaul: Sub-commands can now have nested sub-commands.
-			- Overhaul: Sub-commands can now have aliases, that are added as proxies of the same sub-command handler.
-
-			- Added: Extension methods to aid the registration and retrieval of FluentChat commands, from the api.
-			- Added: Extension methods to aid communication with players.
-			- Added: Extension methods to aid selective routing between client and server APIs.
-			- Added: Extension methods to aid working with Chat Commands, with the API.
+			- Fixed: Mixed case sub-commands no longer cause `KeyNotFoundException` errors.
 		</PackageReleaseNotes>
 	</PropertyGroup>
 

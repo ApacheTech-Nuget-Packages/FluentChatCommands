@@ -33,8 +33,8 @@ namespace ApacheTech.VintageMods.FluentChatCommands.Abstractions
             var firstArg = args.PeekWord("").ToLowerInvariant();
             if ((this as IHaveSubCommands).SubCommands.ContainsKey(firstArg))
             {
-                var subCommand = args.PopWord();
-                (this as IHaveSubCommands).SubCommands[subCommand].Handle(player, groupId, args);
+                var subCommand = args.PopWord().ToLowerInvariant();
+                (this as IHaveSubCommands).SubCommands[firstArg].Handle(player, groupId, args);
                 return;
             }
             CallHandler(player, groupId, args);

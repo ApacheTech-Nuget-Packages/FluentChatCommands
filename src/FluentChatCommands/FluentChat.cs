@@ -91,8 +91,10 @@ namespace ApacheTech.VintageMods.FluentChatCommands
         ///     Unregisters all FluentChat commands that have been registered with the api.
         /// </summary>
         /// <param name="api">The api the commands were registered with.</param>
+        [Obsolete("Commands are now cleaned up by the game, when leaving a world.")]
         public static void ClearCommands(ICoreAPI api)
         {
+            throw new NotImplementedException();
             var commands = CachedCommands.Where(p => p.Side == api.Side).ToList();
             foreach (var command in commands)
             {

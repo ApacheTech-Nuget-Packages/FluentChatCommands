@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ApacheTech.Common.Extensions.Harmony;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
@@ -71,10 +72,7 @@ namespace ApacheTech.VintageMods.FluentChatCommands.Extensions
         /// <param name="commandName">The name of the command.</param>
         public static void UnregisterCommand(this ICoreClientAPI capi, string commandName)
         {
-            var eventManager = (capi.World as ClientMain).GetField<ClientEventManager>("eventManager");
-            var chatCommands = eventManager.GetField<Dictionary<string, ChatCommand>>("chatCommands");
-            if (chatCommands.ContainsKey(commandName)) chatCommands.Remove(commandName);
-            eventManager.SetField("chatCommands", chatCommands);
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -84,10 +82,7 @@ namespace ApacheTech.VintageMods.FluentChatCommands.Extensions
         /// <param name="commandName">The name of the command.</param>
         public static void UnregisterCommand(this ICoreServerAPI sapi, string commandName)
         {
-            var eventManager = (sapi.World as ServerMain).GetField<ServerEventManager>("ModEventManager");
-            var chatCommands = eventManager.GetField<Dictionary<string, ChatCommand>>("chatCommands");
-            if (chatCommands.ContainsKey(commandName)) chatCommands.Remove(commandName);
-            eventManager.SetField("chatCommands", chatCommands);
+            throw new NotImplementedException();
         }
 
         /// <summary>

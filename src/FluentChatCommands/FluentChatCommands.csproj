@@ -1,11 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<Version>2.0.2.0</Version>
+		<Version>2.1.0.0</Version>
 		<PackageReleaseNotes>
-			Update to 2.0.2
+			Update to 2.1.0
 
-			- Fixed: Case sensitivity with sub-commands, and aliases.
+			- Obsolete: FluentChat.ClearCommands() no longer works, as the game now cleans up after itself.
 		</PackageReleaseNotes>
 	</PropertyGroup>
 

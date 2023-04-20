@@ -1,8 +1,6 @@
 ﻿using ApacheTech.VintageMods.FluentChatCommands;
 using ApacheTech.VintageMods.FluentChatCommands.Extensions;
-using Vintagestory.API.Client;
 using Vintagestory.API.Common;
-using Vintagestory.API.Server;
 
 // ReSharper disable UnusedType.Global
 
@@ -18,18 +16,15 @@ namespace FluentChatCommands.Tests.Integration
     /// </summary>>
     internal class IntegrationsTest : ModSystem
     {
+        private ICoreAPI? _api;
+
         public override bool ShouldLoad(EnumAppSide forSide) => true;
 
-        public override void StartClientSide(ICoreClientAPI capi)
+        public override void Start(ICoreAPI api)
         {
-            capi.RegisterCommand("apache", "", "", (_, _) => { capi.ShowChatMessage("Sanity Check"); });
-            BuildCommand(capi);
-        }
-
-        public override void StartServerSide(ICoreServerAPI sapi)
-        {
-            sapi.RegisterCommand("apache", "", "", (p, i, _) => { sapi.ShowChatNotification(p, i, "Sanity Check"); });
-            BuildCommand(sapi);
+            _api = api;
+            _api.ChatCommands.Create("apache").HandleWith(_ => TextCommandResult.Success("Sanity Check"));
+            BuildCommand(_api);
         }
 
         private static void BuildCommand(ICoreAPI api)
@@ -62,7 +57,7 @@ namespace FluentChatCommands.Tests.Integration
                     api.ShowChatNotification(player, groupId, " - Before:");
                     api.ShowChatNotification(player, groupId, ".help fluent");
 
-                    command.HasSubCommand(newSub, x => x.WithHandler((_, _, newArgs) =>
+                    command.HasSubCommand(newSub, xx => xx.WithHandler((_, _, newArgs) =>
                     {
                         api.ShowChatNotification(player, groupId, $"Now inside the `{newSub}` sub-command.");
                         api.ShowChatNotification(player, groupId, $" - Args: {newArgs.PopAll()}");
@@ -71,6 +66,11 @@ namespace FluentChatCommands.Tests.Integration
                     api.ShowChatNotification(player, groupId, " - After:");
                     api.ShowChatNotification(player, groupId, ".help fluent");
                 }).Build());
+        }
+
+        public override void Dispose()
+        {
+            FluentChat.ClearCommands(_api!);
         }
     }
 }

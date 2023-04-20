@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ApacheTech.VintageMods.FluentChatCommands.Contracts;
 using Vintagestory.API.Common;
@@ -15,7 +16,7 @@ namespace ApacheTech.VintageMods.FluentChatCommands.Abstractions
 
         protected internal FluentChatCommandHandler CallHandler { get; protected set; }
 
-        Dictionary<string, IHandleChatCommands> IHaveSubCommands.SubCommands { get; } = new();
+        Dictionary<string, IHandleChatCommands> IHaveSubCommands.SubCommands { get; } = new(StringComparer.OrdinalIgnoreCase);
 
         protected FluentChatCommandBase(ICoreAPI api)
         {
@@ -30,11 +31,11 @@ namespace ApacheTech.VintageMods.FluentChatCommands.Abstractions
         
         public void Handle(IPlayer player, int groupId, CmdArgs args)
         {
-            var firstArg = args.PeekWord("").ToLowerInvariant();
-            if ((this as IHaveSubCommands).SubCommands.ContainsKey(firstArg))
+            var subCommand = args.PeekWord("").ToLowerInvariant();
+            if ((this as IHaveSubCommands).SubCommands.ContainsKey(subCommand))
             {
-                var subCommand = args.PopWord().ToLowerInvariant();
-                (this as IHaveSubCommands).SubCommands[firstArg].Handle(player, groupId, args);
+                subCommand = args.PopWord().ToLowerInvariant();
+                (this as IHaveSubCommands).SubCommands[subCommand].Handle(player, groupId, args);
                 return;
             }
             CallHandler(player, groupId, args);

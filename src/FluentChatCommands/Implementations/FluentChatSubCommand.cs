@@ -27,7 +27,7 @@ namespace ApacheTech.VintageMods.FluentChatCommands.Implementations
         public IFluentChatSubCommandBuilder<TParent> WithAlias(string alias)
         {
             if (string.IsNullOrWhiteSpace(alias)) return this;
-            Aliases.AddIfNotPresent(alias.ToLowerInvariant());
+            Aliases.AddIfNotPresent(alias);
             return this;
         }
 

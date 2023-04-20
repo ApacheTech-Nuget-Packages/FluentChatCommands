@@ -2,7 +2,6 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
-using ApacheTech.VintageMods.FluentChatCommands.Abstractions;
 using ApacheTech.VintageMods.FluentChatCommands.Contracts;
 using ApacheTech.VintageMods.FluentChatCommands.Implementations;
 using ApacheTech.VintageMods.FluentChatCommands.Tests.Unit.Mocks;
